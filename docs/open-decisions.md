@@ -1,31 +1,33 @@
 # Open Decisions
 
-These are not yet decided. Each is tracked as a GitHub issue on the project board —
-resolve there and update this file to reflect the decision once made.
+Nothing below is decided yet. We're doing a research sweep first — see the 7 open
+issues on the project board (https://github.com/users/Sebastianr8243/projects/5),
+one per subsystem. Each sweep's findings get posted as comments on its issue; once a
+decision is actually made, it gets written up here and the issue gets closed.
 
-## 1. Flight controller / autopilot stack
+## Research sweeps in progress
 
-Options on the table: ROS2 (with a companion computer), PX4 or ArduPilot (running on a
-dedicated flight controller board), or a custom microcontroller setup built from
-scratch.
+1. **Hardware** (sensors, flight controller boards, companion compute, power) — issue #14
+2. **Mechanical** (airframe, vibration isolation, fabrication) — issue #15
+3. **Software — state estimation & mapping** (sensor fusion, image stitching) — issue #16
+4. **Autonomy** (control tuning, mission path planning, obstacle handling) — issue #17
+5. **Ground Control Station** (mission planning / telemetry software) — issue #18
+6. **Open-source stacks** (ROS/ROS2, PX4/ArduPilot, ORB-SLAM3, OpenDroneMap, etc.) — issue #19
+7. **Available models** (visual odometry, feature extraction, obstacle detection) — issue #20
 
-This decision affects nearly everything downstream: what fusion runs on, what
-control interfaces are available, what languages/frameworks the team writes in, and
-how much of the sensing/fusion/control stack we get "for free" vs. build ourselves.
+## Decisions this blocks
 
-**Do not start implementation on `fusion/` or `control/` until this is resolved.**
+Nothing gets implemented in `fusion/`, `control/`, `mapping/`, or `sensing/` until the
+relevant sweep(s) above land with concrete options. In particular:
 
-## 2. Camera + gimbal hardware
-
-Determines image resolution/quality, whether a physical gimbal is available for
-stabilization (vs. software-only stabilization), and how camera timestamps are
-synced with the rest of the sensor stack for fusion.
-
-## 3. On-board vs. offline mapping/image stitching
-
-Whether image stitching and map generation happens on the drone in real time, or
-images + position/orientation data are collected in flight and stitched into a map
-afterward on a ground computer.
-
-Affects `mapping/` module design and the on-board compute requirements chosen
-alongside the autopilot stack decision above.
+- **Flight controller / autopilot stack** — depends on Hardware (#14) + Autonomy (#17)
+  + Open-source stacks (#19). Affects what fusion runs on, what control interfaces
+  exist, and how much of the stack we get "for free."
+- **Camera + gimbal hardware** — depends on Hardware (#14) + Mechanical (#15).
+  Determines image quality, whether stabilization is physical or software-only, and
+  how camera timestamps sync with the rest of the sensor stack.
+- **On-board vs. offline mapping/image stitching** — depends on Software (#16) +
+  Hardware (#14, compute capability). Affects `mapping/` module design.
+- **Efficiency metric / budget allocation** — deferred until the sweeps above narrow
+  the option space. "Efficient" can't be defined against unknown alternatives; revisit
+  once real options with real costs are on the table.
