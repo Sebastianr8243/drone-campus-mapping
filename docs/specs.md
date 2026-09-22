@@ -3,10 +3,11 @@
 These four specs define "done" for the prototype. Each needs a demonstrable
 before/after or ground-truth comparison, not just a qualitative claim.
 
-## 1. Coverage of at least 100 ft² area
+## 1. Coverage of at least 100 ft × 100 ft (10,000 ft²) area
 
 The drone must complete a mapping flight covering a contiguous area of at least
-100 ft² and produce output (images + position log) for that entire area.
+100 ft by 100 ft (10,000 ft²) and produce output (images + position log) for that
+entire area.
 
 **How measured:** compute covered area from the flight path + camera footprint,
 or from the stitched map's ground extent.
