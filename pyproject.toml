@@ -1,0 +1,17 @@
+[project]
+name = "drone-campus-mapping"
+version = "0.0.1"
+requires-python = ">=3.12,<3.13"
+dependencies = ["numpy", "scipy", "matplotlib", "pandas"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools]
+packages = ["sensing", "fusion", "control", "mapping"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
