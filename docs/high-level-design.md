@@ -26,7 +26,7 @@ Rather than attempting heavy real-time 3D processing on a low-cost drone, the sy
                             │
                             ▼
 ┌────────────────────────────────────────────────────────┐
-│         2. FLIGHT CONTROL & AUTONOMY SUBSYSTEM          │
+│         2. FLIGHT CONTROL & AUTONOMY SUBSYSTEM         │
 │   • Multi-Sensor Fusion (GPS for XY, Baro for Z)       │
 │   • Active Motor Vibration Filtering                   │
 └───────────────────────────┬────────────────────────────┘
